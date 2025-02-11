@@ -14,7 +14,7 @@ gem 'csv', '~> 3.3'
 gem 'devise', '~> 4.9'
 gem 'doorkeeper', '~> 5.8'
 gem 'faker', '~> 3.5', require: false
-gem 'image_processing', '~> 1.13'
+gem 'image_processing', '~> 1.14'
 gem 'money-rails', '~> 1.15'
 gem 'pagy', '~> 9.3'
 gem 'paranoia', '~> 3.0'
