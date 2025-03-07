@@ -7,10 +7,13 @@ module V2
 
     def next_sku
       initial_custom_sku = 999_990_000_000
-      @product = policy_scope(model_class).where(store_id: params[:store_id], sku: 999_990_000_000..nil).order(sku: :desc).first
+      @product = policy_scope(model_class).where("sku ~ E'^\\\\d+$'")
+                                          .where(store_id: params[:store_id], sku: 999_990_000_000..nil)
+                                          .order(sku: :desc)
+                                          .first
 
       render json: {
-        next_sku: @product.nil? ? initial_custom_sku : @product.sku.to_i + 1
+        next_sku: @product.nil? || @product.sku.to_i.zero? ? initial_custom_sku : @product.sku.to_i + 1
       }
     end
 
