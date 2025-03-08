@@ -6,6 +6,9 @@ class ShippingPolicy < Presets::UserEditablePolicy
 
   def permitted_attributes_for_create
     [
+      :state,
+      :validated_at,
+      :cancelled_at,
       :created_at,
       :store_id,
       :provider_id,

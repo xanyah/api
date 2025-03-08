@@ -13,6 +13,7 @@ class ProductPolicy < Presets::UserEditablePolicy
       :buying_amount,
       :buying_amount_cents,
       :buying_amount_currency,
+      :quantity,
       :tax_free_amount,
       :tax_free_amount_cents,
       :tax_free_amount_currency,
