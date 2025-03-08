@@ -6,7 +6,7 @@ class Category < ApplicationRecord
 
   validates_ownership_of :category, with: :store
 
-  validates :name, presence: true, uniqueness: { scope: :category }
+  validates :name, presence: true, uniqueness: { scope: %i[category store] }
 
   scope :without_category, -> { where(category_id: nil) }
   scope :children_of, ->(id) { where(category_id: id) }
