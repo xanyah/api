@@ -45,7 +45,7 @@ group :test do
   gem 'rspec-rails', '~> 7.1'
   gem 'rspec-sidekiq', '~> 5.0'
   gem 'simplecov', '~> 0.22'
-  gem 'simplecov-console', '~> 0.4'
+  gem 'simplecov-console', '~> 0.9'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
