@@ -42,7 +42,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 7.1'
+  gem 'rspec-rails', '~> 8.0'
   gem 'rspec-sidekiq', '~> 5.0'
   gem 'simplecov', '~> 0.22'
   gem 'simplecov-console', '~> 0.4'
