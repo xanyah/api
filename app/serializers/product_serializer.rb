@@ -41,5 +41,7 @@ class ProductSerializer < ActiveModel::Serializer
 
   def image_variant_path(image, variant)
     rails_representation_url(image.variant(variant), only_path: true)
+  rescue
+    nil
   end
 end
