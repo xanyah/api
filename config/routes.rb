@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :sale_payments, only: :index
     resources :sale_products, only: :index
     resources :sales
-    resources :shippings, except: [:update] do
+    resources :shippings do
       patch :validate, on: :member
       patch :cancel, on: :member
     end
