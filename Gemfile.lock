@@ -456,7 +456,7 @@ DEPENDENCIES
   rubocop-thread_safety (~> 0.6)
   sidekiq (~> 7.3)
   simplecov (~> 0.22)
-  simplecov-console (~> 0.4)
+  simplecov-console (~> 0.9)
   tzinfo-data
   validators (~> 3.4)
 
