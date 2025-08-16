@@ -441,7 +441,7 @@ DEPENDENCIES
   pg (~> 1.5)
   pry (~> 0.15.2)
   puma (~> 6.6)
-  pundit (~> 2.4)
+  pundit (~> 2.5)
   rack-cors (~> 2.0)
   rails (~> 8.0)
   ransack (~> 4.2)
