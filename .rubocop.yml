@@ -1,13 +1,10 @@
-require:
-  - rubocop-factory_bot
-  # - rubocop-i18n
-  - rubocop-rspec_rails
-  - rubocop-thread_safety
-
 plugins:
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
+  - rubocop-thread_safety
 
 AllCops:
   NewCops: enable

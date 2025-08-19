@@ -20,10 +20,11 @@ class ShippingPolicy < Presets::UserEditablePolicy
   end
 
   def permitted_attributes_for_update
-    { shipping_products_attributes: %i[
+    [shipping_products_attributes: %i[
       _destroy
+      id
       product_id
       quantity
-    ] }
+    ]]
   end
 end
