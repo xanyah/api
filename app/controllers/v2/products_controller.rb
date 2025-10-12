@@ -17,6 +17,18 @@ module V2
       }
     end
 
+    %i[archive unarchive].each do |action|
+      define_method(action) do
+        authorize @record, :update?
+
+        if @record.send(:"#{action}!")
+          render json: @record
+        else
+          render json: @record.errors, status: :unprocessable_entity
+        end
+      end
+    end
+
     def included_relationships
       [:manufacturer, { category: [:category], product_custom_attributes: [:custom_attribute] }]
     end

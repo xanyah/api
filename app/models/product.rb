@@ -39,4 +39,12 @@ class Product < ApplicationRecord
                        resize_to_fill: [1600, 1200],
                        preprocessed: true
   end
+
+  def archive!
+    update(archived_at: Time.current)
+  end
+
+  def unarchive!
+    update(archived_at: nil)
+  end
 end

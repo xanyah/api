@@ -15,6 +15,7 @@ class SalePolicy < Presets::UserEditablePolicy
           amount_currency
           original_amount_cents
           original_amount_currency
+          custom_label
         ],
         sale_payments_attributes: %i[
           payment_type_id

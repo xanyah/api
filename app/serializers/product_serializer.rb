@@ -17,7 +17,8 @@ class ProductSerializer < ActiveModel::Serializer
              :manufacturer_sku,
              :images,
              :created_at,
-             :updated_at
+             :updated_at,
+             :archived_at
 
   belongs_to :category
   belongs_to :manufacturer
