@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ShippingProduct < ApplicationRecord
-  belongs_to :product, optional: false
+  belongs_to :product, optional: true
   belongs_to :shipping, optional: false
 
   has_one :store, through: :product

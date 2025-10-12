@@ -29,6 +29,8 @@ class Sale < ApplicationRecord
 
   def update_stock
     sale_products.each do |sale_product|
+      next if sale_product.product.nil?
+
       sale_product.product.update(quantity: sale_product.product.quantity - sale_product.quantity)
     end
   end

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     resources :payment_types
     resources :products do
       get :next_sku, on: :collection
+      patch :archive, on: :member
+      patch :unarchive, on: :member
     end
     resources :providers
     resources :sale_payments, only: :index

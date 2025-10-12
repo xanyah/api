@@ -7,6 +7,7 @@ class SaleProductSerializer < ActiveModel::Serializer
              :original_amount_cents,
              :original_amount_currency,
              :quantity,
+             :custom_label,
              :created_at
 
   belongs_to :product

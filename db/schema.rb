@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_22_201914) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_12_091926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -246,6 +246,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_22_201914) do
     t.string "amount_currency", default: "EUR", null: false
     t.string "manufacturer_sku"
     t.uuid "vat_rate_id"
+    t.datetime "archived_at"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
@@ -280,7 +281,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_22_201914) do
   create_table "sale_products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "quantity", default: 1
     t.uuid "sale_id", null: false
-    t.uuid "product_id", null: false
+    t.uuid "product_id"
     t.integer "original_amount_cents", default: 0, null: false
     t.string "original_amount_currency", default: "EUR", null: false
     t.integer "amount_cents", default: 0, null: false
@@ -288,6 +289,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_22_201914) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "custom_label"
     t.index ["product_id"], name: "index_sale_products_on_product_id"
     t.index ["sale_id"], name: "index_sale_products_on_sale_id"
   end
