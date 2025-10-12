@@ -20,14 +20,14 @@ class ApplicationPolicy
     user.store_user?(record.store)
   end
 
-  def no
+  def no?
     false
   end
 
-  alias show? no
-  alias create? no
-  alias update? no
-  alias destroy? no
+  alias show? no?
+  alias create? no?
+  alias update? no?
+  alias destroy? no?
 
   class Scope
     def initialize(user, scope)
