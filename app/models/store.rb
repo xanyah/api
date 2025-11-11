@@ -25,6 +25,6 @@ class Store < ApplicationRecord
   validates :name, presence: true
 
   def shopify_enabled?
-    shopify_shop.present? && shopify_access_token.present?
+    shopify_shop.present? && shopify_access_token.present? && shopify_location_id.present?
   end
 end

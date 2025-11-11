@@ -12,9 +12,20 @@ module Shopify
       else
         create_new_product
       end
+      update_shopify_quantity
     end
 
     private
+
+    def update_shopify_quantity
+      shopify_client.post(path: 'inventory_levels/set',
+                          body: {
+                            location_id: product.store.shopify_location_id,
+                            inventory_item_id: product.shopify_variant_inventory_item_id,
+                            available: product.quantity
+                          },
+                          tries: MAX_RETRIES)
+    end
 
     def sync_existing_product
       shopify_product = update_shopify_product(product.shopify_product_id)
