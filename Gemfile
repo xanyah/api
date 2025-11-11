@@ -25,7 +25,7 @@ gem 'rack-cors', '~> 2.0'
 gem 'rails', '~> 8.0'
 gem 'ransack', '~> 4.2'
 gem 'shopify_api', '~> 15.0'
-gem 'sidekiq', '~> 7.3'
+gem 'sidekiq', '~> 8.0'
 gem 'validators', '~> 3.4'
 
 group :development, :test do
