@@ -18,8 +18,8 @@ module Shopify
 
     private
 
-    def get_store_id(resource_id)
-      find_resource(resource_id).store.id
+    def get_store_id(arguments)
+      find_resource(arguments.first).store.id
     end
 
     def update_shopify_quantity
