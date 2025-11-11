@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   default_url_options host: ENV.fetch('RAILS_DEFAULT_HOST', 'localhost:3000')
   devise_for :users, only: []
 
+  mount GoodJob::Engine => 'good_job'
+
   namespace :v2 do
     resources :categories
     resources :countries, only: %i[index show]

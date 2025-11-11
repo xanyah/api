@@ -14,6 +14,7 @@ gem 'csv', '~> 3.3'
 gem 'devise', '~> 4.9'
 gem 'doorkeeper', '~> 5.8'
 gem 'faker', '~> 3.5', require: false
+gem 'good_job', '~> 4.12'
 gem 'image_processing', '~> 1.13'
 gem 'money-rails', '~> 1.15'
 gem 'pagy', '~> 9.3'
@@ -25,7 +26,6 @@ gem 'rack-cors', '~> 2.0'
 gem 'rails', '~> 8.0'
 gem 'ransack', '~> 4.2'
 gem 'shopify_api', '~> 15.0'
-gem 'sidekiq', '~> 7.3'
 gem 'validators', '~> 3.4'
 
 group :development, :test do
@@ -44,7 +44,6 @@ end
 
 group :test do
   gem 'rspec-rails', '~> 7.1'
-  gem 'rspec-sidekiq', '~> 5.0'
   gem 'simplecov', '~> 0.22'
   gem 'simplecov-console', '~> 0.4'
 end

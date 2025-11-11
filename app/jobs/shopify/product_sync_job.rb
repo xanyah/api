@@ -36,7 +36,7 @@ module Shopify
 
       update_shopify_variant(shopify_variant['id'])
 
-      product.update!(shopify_updated_at: Time.current)
+      product.update_columns(shopify_updated_at: Time.current) # rubocop:disable Rails/SkipsModelValidations
     end
 
     def update_shopify_product(product_shopify_id)
@@ -57,9 +57,9 @@ module Shopify
 
       update_shopify_variant(shopify_variant['id'])
 
-      product.update!(shopify_product_id: shopify_product['id'],
-                      shopify_variant_inventory_item_id: shopify_variant['inventory_item_id'],
-                      shopify_updated_at: Time.current)
+      product.update_columns(shopify_product_id: shopify_product['id'], # rubocop:disable Rails/SkipsModelValidations
+                             shopify_variant_inventory_item_id: shopify_variant['inventory_item_id'],
+                             shopify_updated_at: Time.current)
     end
 
     def update_shopify_variant(variant_id)
