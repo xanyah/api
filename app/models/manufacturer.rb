@@ -8,8 +8,15 @@ class Manufacturer < ApplicationRecord
   validates :name, presence: true
 
   before_validation :set_code
+  after_commit :sync_with_shopify
 
   def set_code
     self.code = name&.first(4)&.upcase if code.blank?
+  end
+
+  private
+
+  def sync_with_shopify
+    Shopify::ManufacturerSyncJob.perform_later(id) if store.shopify_enabled?
   end
 end

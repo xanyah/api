@@ -18,6 +18,8 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :sku, uniqueness: { scope: :store }
 
+  after_commit :sync_with_shopify
+
   has_many_attached :images do |attachable|
     # Used for OpenGraph previews
     attachable.variant :open_graph,
@@ -46,5 +48,11 @@ class Product < ApplicationRecord
 
   def unarchive!
     update(archived_at: nil)
+  end
+
+  private
+
+  def sync_with_shopify
+    Shopify::ProductSyncJob.perform_later(id) if store.shopify_enabled?
   end
 end

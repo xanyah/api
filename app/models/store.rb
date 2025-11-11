@@ -23,4 +23,8 @@ class Store < ApplicationRecord
   has_many :users, through: :store_memberships
   validates :key, presence: true, uniqueness: true, allow_nil: false
   validates :name, presence: true
+
+  def shopify_enabled?
+    shopify_shop.present? && shopify_access_token.present?
+  end
 end

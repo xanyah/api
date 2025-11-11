@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_12_091926) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_11_110349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -50,6 +50,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_12_091926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at", precision: nil
+    t.string "shopify_id"
+    t.datetime "shopify_updated_at"
     t.index ["category_id"], name: "index_categories_on_category_id"
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
     t.index ["store_id"], name: "index_categories_on_store_id"
@@ -132,6 +134,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_12_091926) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at", precision: nil
     t.string "code"
+    t.string "shopify_id"
+    t.datetime "shopify_updated_at"
     t.index ["deleted_at"], name: "index_manufacturers_on_deleted_at"
     t.index ["store_id"], name: "index_manufacturers_on_store_id"
   end
@@ -247,6 +251,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_12_091926) do
     t.string "manufacturer_sku"
     t.uuid "vat_rate_id"
     t.datetime "archived_at"
+    t.string "shopify_product_id"
+    t.string "shopify_variant_inventory_item_id"
+    t.datetime "shopify_updated_at"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
@@ -375,6 +382,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_12_091926) do
     t.string "color"
     t.string "city"
     t.boolean "is_import_enabled", default: false
+    t.string "shopify_shop"
+    t.string "shopify_access_token"
+    t.datetime "shopify_updated_at"
     t.index ["country_id"], name: "index_stores_on_country_id"
     t.index ["deleted_at"], name: "index_stores_on_deleted_at"
   end
