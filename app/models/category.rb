@@ -16,7 +16,7 @@ class Category < ApplicationRecord
   private
 
   def sync_with_shopify
-    return if shopify_id_changed? || !store.shopify_enabled?
+    return if previous_changes.key?('shopify_id') || !store.shopify_enabled?
 
     Shopify::CategorySyncJob.perform_later(id)
   end

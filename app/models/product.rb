@@ -53,7 +53,7 @@ class Product < ApplicationRecord
   private
 
   def sync_with_shopify
-    return if shopify_product_id_changed? || shopify_variant_inventory_item_id_changed? || !store.shopify_enabled?
+    return if previous_changes.key?('shopify_product_id') || previous_changes.key?('shopify_variant_inventory_item_id') || !store.shopify_enabled?
 
     Shopify::ProductSyncJob.perform_later(id)
   end
