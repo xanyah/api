@@ -17,6 +17,10 @@ module Shopify
 
     private
 
+    def get_store_id(resource_id)
+      find_resource(resource_id).store.id
+    end
+
     def sync_existing_custom_collection
       update_custom_collection(resource.shopify_id, resource.name)
       resource.update_columns(shopify_updated_at: Time.current) # rubocop:disable Rails/SkipsModelValidations

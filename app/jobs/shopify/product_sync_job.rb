@@ -18,6 +18,10 @@ module Shopify
 
     private
 
+    def get_store_id(resource_id)
+      find_resource(resource_id).store.id
+    end
+
     def update_shopify_quantity
       shopify_client.post(path: 'inventory_levels/set',
                           body: {

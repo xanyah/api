@@ -4,6 +4,14 @@ module Shopify
   class BaseJob < ApplicationJob
     attr_reader :store
 
+    include GoodJob::ActiveJobExtensions::Concurrency
+
+    # Define the concurrency control using a key based on the calculated store_id
+    good_job_control_concurrency_with(
+      perform_limit: 1,
+      key: -> { "shopify-sync-#{get_store_id(arguments)}" }
+    )
+
     MAX_RETRIES = 5
 
     def shopify_client
@@ -23,6 +31,10 @@ module Shopify
         ShopifyAPI::Context.activate_session(@shopify_session)
       end
       @shopify_session
+    end
+
+    def get_store_id(_arguments)
+      raise NotImplementedError
     end
   end
 end
