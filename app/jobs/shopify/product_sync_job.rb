@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Shopify
-  class ProductSyncJob < BaseJob
+  class ProductSyncJob < BaseJob # rubocop:disable Metrics/ClassLength
     attr_reader :product
 
     def perform(product_id)
       @product = Product.find(product_id)
+      @shop = @product.store
 
       if product.shopify_id.present?
         sync_existing_product

@@ -17,6 +17,8 @@ class Manufacturer < ApplicationRecord
   private
 
   def sync_with_shopify
-    Shopify::ManufacturerSyncJob.perform_later(id) if store.shopify_enabled?
+    return if shopify_id_changed? || !store.shopify_enabled?
+
+    Shopify::ManufacturerSyncJob.perform_later(id)
   end
 end

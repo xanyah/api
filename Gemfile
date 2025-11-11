@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.4.1'
+ruby '3.4.7'
 
 # dotenv first to load environment variables everywhere
 gem 'dotenv-rails', '~> 3.1', groups: %i[development test]

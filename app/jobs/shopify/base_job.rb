@@ -7,19 +7,22 @@ module Shopify
     MAX_RETRIES = 5
 
     def shopify_client
-      @shopify_client ||= ShopifyAPI::Clients::Rest::Admin.new(session: shopify_session)
+      @shopify_client ||= ShopifyAPI::Clients::Rest::Admin.new(api_version: '2025-10',
+                                                               session: shopify_session)
     end
 
     def shopify_session
+      raise ArgumentError, 'Store must be set' if store.nil?
+      raise ArgumentError, "Store #{store.id} is not Shopify enabled" unless store.shopify_enabled?
+
       if @shopify_session.nil?
         @shopify_session = ShopifyAPI::Auth::Session.new(
           shop: store.shopify_shop,
           access_token: store.shopify_access_token
         )
         ShopifyAPI::Context.activate_session(@shopify_session)
-      else
-        @shopify_session
       end
+      @shopify_session
     end
   end
 end
