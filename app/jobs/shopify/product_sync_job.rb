@@ -19,7 +19,7 @@ module Shopify
     private
 
     def get_store_id(arguments)
-      find_resource(arguments.first).store.id
+      Product.find(arguments.first).store.id
     end
 
     def update_shopify_quantity
