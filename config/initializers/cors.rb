@@ -11,7 +11,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins '*'
     resource '*',
-             expose: %w[access-token client expiry token-type uid total-pages],
+             expose: %w[access-token client expiry token-type uid total-pages total-count current-page link page-items],
              headers: :any,
              methods: :any
   end
