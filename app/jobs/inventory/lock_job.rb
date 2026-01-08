@@ -38,6 +38,7 @@ class Inventory
       # Set quantity to 0 for products not in this inventory (scoped to the store)
       Product.where(store_id: inventory.store_id)
              .where.not(id: inventoried_product_ids)
+             .where.not(quantity: 0)
              .update_all(quantity: 0) # rubocop:disable Rails/SkipsModelValidations
     end
   end
