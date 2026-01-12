@@ -13,7 +13,7 @@ module V2
     end
 
     rescue_from ArgumentError do |exception|
-      render json: { errors: [exception] }, status: :unprocessable_entity
+      render json: { errors: [exception] }, status: :unprocessable_content
     end
 
     rescue_from Pundit::NotAuthorizedError do |e|

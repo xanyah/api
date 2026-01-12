@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
   end
 
   rescue_from ArgumentError do |exception|
-    render json: { errors: [exception] }, status: :unprocessable_entity
+    render json: { errors: [exception] }, status: :unprocessable_content
   end
 
   protected

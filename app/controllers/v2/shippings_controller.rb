@@ -8,7 +8,7 @@ module V2
       if @record.validate!
         render json: @record
       else
-        render json: @record.errors, status: :unprocessable_entity
+        render json: @record.errors, status: :unprocessable_content
       end
     end
 
@@ -18,7 +18,7 @@ module V2
       if @record.cancel!
         render json: @record
       else
-        render json: @record.errors, status: :unprocessable_entity
+        render json: @record.errors, status: :unprocessable_content
       end
     end
   end
