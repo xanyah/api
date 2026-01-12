@@ -8,7 +8,7 @@
 # You can set any pagy option. They can also be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as options:
-Pagy.options[:limit]       = 100                    # default: 20
+Pagy.options[:limit] = 100 # default: 20
 # Pagy.options[:size]        = 7                     # default
 # Pagy.options[:end]         = true                  # default (was :ends in previous versions)
 # Pagy.options[:page_key]    = 'page'                # default (was :page_param as symbol in previous versions)
