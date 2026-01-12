@@ -4,10 +4,9 @@ module Shopify
   class ProductSynchronizer
     include Shopify::SyncLogging
 
-    def initialize(product, shopify_client, collection_manager, payload_builder, max_retries:)
+    def initialize(product, shopify_client, payload_builder, max_retries:)
       @product = product
       @shopify_client = shopify_client
-      @collection_manager = collection_manager
       @payload_builder = payload_builder
       @max_retries = max_retries
     end
@@ -16,7 +15,6 @@ module Shopify
       shopify_product = fetch_and_validate_shopify_product(product.shopify_product_id)
       shopify_variant = shopify_product['variants'].first
 
-      collection_manager.add_to_collections(product.shopify_product_id, max_retries: max_retries)
       update_variant_with_logging(shopify_variant['id'])
       update_sync_timestamp
     end
@@ -29,7 +27,7 @@ module Shopify
 
     private
 
-    attr_reader :product, :shopify_client, :collection_manager, :payload_builder, :max_retries
+    attr_reader :product, :shopify_client, :payload_builder, :max_retries
 
     def log_product_creation
       Rails.logger.info("Creating new Shopify product for product_id=#{product.id}, name=#{product.name}")
@@ -43,7 +41,6 @@ module Shopify
     end
 
     def finalize_product_creation(shopify_product, shopify_variant)
-      collection_manager.add_to_collections(shopify_product['id'], max_retries: max_retries)
       update_variant_with_logging(shopify_variant['id'])
       save_shopify_product_ids(shopify_product, shopify_variant)
     end

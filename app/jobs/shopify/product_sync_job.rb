@@ -55,14 +55,9 @@ module Shopify
       @synchronizer ||= Shopify::ProductSynchronizer.new(
         product,
         shopify_client,
-        collection_manager,
         payload_builder,
         max_retries: MAX_RETRIES
       )
-    end
-
-    def collection_manager
-      @collection_manager ||= Shopify::ProductCollectionManager.new(product, shopify_client)
     end
 
     def payload_builder
