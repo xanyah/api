@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '3.4.7'
 
 # dotenv first to load environment variables everywhere
-gem 'dotenv-rails', '~> 3.1', groups: %i[development test]
+gem 'dotenv-rails', '~> 3.2', groups: %i[development test]
 
 gem 'aasm', '~> 5.5'
 gem 'active_model_serializers', '~> 0.10'
