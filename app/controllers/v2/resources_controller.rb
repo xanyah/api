@@ -10,7 +10,7 @@ module V2
       @q = policy_scope(model_class).includes(included_relationships).ransack(params[:q])
       @pagy, @records = pagy(@q.result(distinct: true))
 
-      pagy_headers_merge(@pagy)
+      response.headers.merge!(@pagy.headers_hash)
 
       render json: @records
     end
