@@ -16,13 +16,13 @@ gem 'doorkeeper', '~> 5.8'
 gem 'faker', '~> 3.5', require: false
 gem 'good_job', '~> 4.13'
 gem 'image_processing', '~> 1.13'
-gem 'money-rails', '~> 1.15'
+gem 'money-rails', '~> 2.0.0'
 gem 'pagy', '~> 43.2'
 gem 'paranoia', '~> 3.0'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 7.1'
 gem 'pundit', '~> 2.4'
-gem 'rack-cors', '~> 2.0'
+gem 'rack-cors', '~> 3.0'
 gem 'rails', '~> 8.0'
 gem 'ransack', '~> 4.2'
 gem 'shopify_api', '~> 15.0'
@@ -32,7 +32,7 @@ group :development, :test do
   gem 'brakeman', '~> 7.0', require: false
   gem 'database_cleaner-active_record', '~> 2.2'
   gem 'factory_bot_rails', '~> 6.4'
-  gem 'pry', '~> 0.15.2'
+  gem 'pry', '~> 0.16.0'
   gem 'rspec_api_documentation', github: 'SchoolKeep/rspec_api_documentation', ref: '13df1ac'
   gem 'rubocop', '~> 1.71', require: false
   gem 'rubocop-factory_bot', '~> 2.28', require: false
@@ -43,7 +43,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 7.1'
+  gem 'rspec-rails', '~> 8.0'
   gem 'simplecov', '~> 0.22'
   gem 'simplecov-console', '~> 0.4'
 end
