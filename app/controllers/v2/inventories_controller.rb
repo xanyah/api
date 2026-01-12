@@ -8,7 +8,7 @@ module V2
       if @record.lock
         render json: @record
       else
-        render json: @record.errors, status: :unprocessable_entity
+        render json: @record.errors, status: :unprocessable_content
       end
     end
   end

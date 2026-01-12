@@ -10,7 +10,7 @@ module V2
         StoreMembership.create(user: current_user, store: @record)
         render json: @record, status: :created
       else
-        render json: @record.errors, status: :unprocessable_entity
+        render json: @record.errors, status: :unprocessable_content
       end
     end
   end
