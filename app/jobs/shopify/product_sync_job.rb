@@ -8,7 +8,7 @@ module Shopify
       @product = Product.find(product_id)
       @shop = @product.store
 
-      if product.shopify_id.present?
+      if product.shopify_product_id.present?
         sync_existing_product
       else
         create_new_product
