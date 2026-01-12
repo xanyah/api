@@ -86,7 +86,7 @@ module Shopify
         tags: product_shopify_tags,
         published_scope: :global,
         published_at: DateTime.now.iso8601,
-        images: local_images
+        images: product_images
       }
     end
 
