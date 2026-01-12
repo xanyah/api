@@ -6,7 +6,7 @@ module Shopify
 
     def perform(product_id)
       @product = Product.find(product_id)
-      @shop = @product.store
+      @store = @product.store
 
       if product.shopify_product_id.present?
         sync_existing_product
