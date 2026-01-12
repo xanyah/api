@@ -2,7 +2,7 @@
 
 module V2
   class BaseController < ActionController::API
-    include Pagy::Backend
+    include Pagy::Method
     include Pundit::Authorization
     include DoorkeeperUserConcern
 
