@@ -23,7 +23,7 @@
 		},
 		"ghcr.io/eitsupi/devcontainer-features/go-task:1": {},
 		"ghcr.io/rails/devcontainer/features/ruby": {
-			"version": "4.0.0"
+			"version": "4.0.1"
 		}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
