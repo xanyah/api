@@ -335,6 +335,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_11_135724) do
     t.uuid "category_id"
     t.datetime "created_at", null: false
     t.datetime "deleted_at", precision: nil
+    t.text "description"
     t.uuid "manufacturer_id"
     t.string "manufacturer_sku"
     t.string "name"

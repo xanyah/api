@@ -9,6 +9,7 @@ module Shopify
     def product_payload
       {
         title: product.name,
+        body_html: product.description,
         status: product_status,
         vendor: product.manufacturer&.name || 'Unknown',
         product_type: product.category&.name || 'Uncategorized',

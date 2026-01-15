@@ -5,6 +5,7 @@ class ProductSerializer < ActiveModel::Serializer
 
   attributes :id,
              :name,
+             :description,
              :amount_cents,
              :amount_currency,
              :buying_amount_cents,
