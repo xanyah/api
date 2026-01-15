@@ -474,6 +474,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_11_135724) do
     t.boolean "is_import_enabled", default: false
     t.string "key"
     t.string "name"
+    t.string "openai_api_key"
     t.string "phone_number"
     t.string "shopify_access_token"
     t.string "shopify_location_id"

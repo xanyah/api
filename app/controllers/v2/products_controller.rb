@@ -17,6 +17,20 @@ module V2
       }
     end
 
+    def generate_description
+      authorize @record, :update?
+
+      service = OpenAI::DescriptionGeneratorService.new(@record)
+      description = service.generate
+
+      render json: { description: description }
+    rescue OpenAI::DescriptionGeneratorService::MissingApiKeyError => e
+      render json: { error: e.message }, status: :unprocessable_content
+    rescue StandardError => e
+      Rails.logger.error("Failed to generate description: #{e.message}")
+      render json: { error: 'Failed to generate description' }, status: :internal_server_error
+    end
+
     %i[archive unarchive].each do |action|
       define_method(action) do
         authorize @record, :update?

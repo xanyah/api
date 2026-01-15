@@ -44,6 +44,7 @@ class StorePolicy < ApplicationPolicy
       email_address
       color
       city
+      openai_api_key
     ]
     attributes << :is_import_enabled if user.store_owner?(record)
     attributes
