@@ -3,8 +3,8 @@
 require 'net/http'
 require 'json'
 
-module OpenAI
-  class DescriptionGeneratorService
+module OpenAi
+  class DescriptionGeneratorService # rubocop:disable Metrics/ClassLength
     class MissingApiKeyError < StandardError; end
 
     OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions'
@@ -67,7 +67,7 @@ module OpenAI
       }
     end
 
-    def build_system_prompt
+    def build_system_prompt # rubocop:disable Metrics/MethodLength
       base_prompt = [
         'You are an expert e-commerce copywriter specialized in creating SEO-optimized product descriptions.',
         'Your task is to analyze a product and provide suggestions for improvement.',
@@ -89,26 +89,37 @@ module OpenAI
         '}'
       ].join("\n")
 
-      return base_prompt unless store.ai_prompt.present?
+      return base_prompt if store.ai_prompt.blank?
 
       "#{base_prompt}\n\nAdditional store-specific instructions:\n#{store.ai_prompt}"
     end
 
-    def build_user_prompt
+    def build_user_prompt # rubocop:disable Metrics/AbcSize
       prompt_parts = []
       prompt_parts << "Product Name: #{product.name}"
-      prompt_parts << "Category: #{product.category.name}" if product.category
+      prompt_parts << "Current description: #{product.description}" if product.description.present?
+      prompt_parts << build_category_path if product.category
       prompt_parts << "Manufacturer: #{product.manufacturer.name}" if product.manufacturer
-
-      if product.product_custom_attributes.any?
-        attributes = product.product_custom_attributes.map do |pca|
-          "#{pca.custom_attribute.name}: #{pca.value}" if pca.value.present?
-        end.compact
-        prompt_parts << "Product Attributes:\n#{attributes.join("\n")}" if attributes.any?
-      end
-
+      prompt_parts << build_custom_attributes if product.product_custom_attributes.any?
       prompt_parts << "\nAnalyze this product and provide your suggestions in JSON format."
-      prompt_parts.join("\n\n")
+      prompt_parts.compact.join("\n\n")
+    end
+
+    def build_category_path
+      category_path = [product.category.name]
+      parent = product.category.category
+      while parent
+        category_path.unshift(parent.name)
+        parent = parent.category
+      end
+      "Category: #{category_path.join(' > ')}"
+    end
+
+    def build_custom_attributes
+      attributes = product.product_custom_attributes.filter_map do |pca|
+        "#{pca.custom_attribute.name}: #{pca.value}" if pca.value.present?
+      end
+      "Product Attributes:\n#{attributes.join("\n")}" if attributes.any?
     end
 
     def parse_response(response)

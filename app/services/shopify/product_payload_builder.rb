@@ -6,7 +6,7 @@ module Shopify
       @product = product
     end
 
-    def product_payload
+    def product_payload # rubocop:disable Metrics/AbcSize
       {
         title: product.name,
         body_html: product.description,
