@@ -15,5 +15,7 @@ class StoreSerializer < ActiveModel::Serializer
              :created_at,
              :updated_at,
              :color,
-             :is_import_enabled
+             :is_import_enabled,
+             :openai_api_key,
+             :ai_prompt
 end

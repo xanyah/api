@@ -17,6 +17,24 @@ module V2
       }
     end
 
+    def ai_suggestions
+      authorize @record, :update?
+
+      service = OpenAi::DescriptionGeneratorService.new(
+        @record,
+        title: params[:title],
+        description: params[:description]
+      )
+      suggestions = service.generate
+
+      render json: suggestions
+    rescue OpenAi::DescriptionGeneratorService::MissingApiKeyError => e
+      render json: { error: e.message }, status: :unprocessable_content
+    rescue StandardError => e
+      Rails.logger.error("Failed to generate AI suggestions: #{e.message}")
+      render json: { error: 'Failed to generate AI suggestions' }, status: :internal_server_error
+    end
+
     %i[archive unarchive].each do |action|
       define_method(action) do
         authorize @record, :update?

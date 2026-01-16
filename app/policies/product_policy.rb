@@ -4,6 +4,7 @@ class ProductPolicy < Presets::UserEditablePolicy
   def permitted_attributes_for_create # rubocop:disable Metrics/MethodLength
     [
       :name,
+      :description,
       :category_id,
       :manufacturer_id,
       :store_id,
@@ -26,9 +27,10 @@ class ProductPolicy < Presets::UserEditablePolicy
     ]
   end
 
-  def permitted_attributes_for_update
+  def permitted_attributes_for_update # rubocop:disable Metrics/MethodLength
     [
       :name,
+      :description,
       :category_id,
       :manufacturer_id,
       :amount,
