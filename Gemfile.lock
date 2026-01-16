@@ -415,7 +415,7 @@ GEM
       ffi (~> 1.12)
       logger
     securerandom (0.4.1)
-    shopify_api (16.0.0)
+    shopify_api (16.1.0)
       activesupport
       concurrent-ruby
       hash_diff
@@ -436,7 +436,7 @@ GEM
       terminal-table
     simplecov-html (0.13.2)
     simplecov_json_formatter (0.1.4)
-    sorbet-runtime (0.6.12887)
+    sorbet-runtime (0.6.12889)
     stringio (3.2.0)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
@@ -502,7 +502,7 @@ DEPENDENCIES
   rubocop-rails (~> 2.34)
   rubocop-rspec_rails (~> 2.32)
   rubocop-thread_safety (~> 0.6)
-  shopify_api (~> 16.0)
+  shopify_api (~> 16.1)
   simplecov (~> 0.22)
   simplecov-console (~> 0.4)
   tzinfo-data
