@@ -9,9 +9,11 @@ module OpenAi
 
     OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions'
 
-    def initialize(product)
+    def initialize(product, title: nil, description: nil)
       @product = product
       @store = product.store
+      @custom_title = title
+      @custom_description = description
     end
 
     def generate
@@ -23,7 +25,7 @@ module OpenAi
 
     private
 
-    attr_reader :product, :store
+    attr_reader :product, :store, :custom_title, :custom_description
 
     def api_key_present?
       store.openai_api_key.present?
@@ -96,8 +98,10 @@ module OpenAi
 
     def build_user_prompt # rubocop:disable Metrics/AbcSize
       prompt_parts = []
-      prompt_parts << "Product Name: #{product.name}"
-      prompt_parts << "Current description: #{product.description}" if product.description.present?
+      title = custom_title.presence || product.name
+      description = custom_description.presence || product.description
+      prompt_parts << "Product Name: #{title}"
+      prompt_parts << "Current description: #{description}" if description.present?
       prompt_parts << build_category_path if product.category
       prompt_parts << "Manufacturer: #{product.manufacturer.name}" if product.manufacturer
       prompt_parts << build_custom_attributes if product.product_custom_attributes.any?

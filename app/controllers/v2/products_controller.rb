@@ -20,7 +20,11 @@ module V2
     def ai_suggestions
       authorize @record, :update?
 
-      service = OpenAi::DescriptionGeneratorService.new(@record)
+      service = OpenAi::DescriptionGeneratorService.new(
+        @record,
+        title: params[:title],
+        description: params[:description]
+      )
       suggestions = service.generate
 
       render json: suggestions
