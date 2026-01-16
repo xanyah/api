@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       get :next_sku, on: :collection
       patch :archive, on: :member
       patch :unarchive, on: :member
-      post :generate_description, on: :member
+      post :ai_suggestions, on: :member
     end
     resources :providers
     resources :sale_payments, only: :index

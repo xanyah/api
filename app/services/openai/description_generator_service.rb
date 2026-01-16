@@ -54,39 +54,81 @@ module OpenAI
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant that writes product descriptions in HTML format. ' \
-                     'Use proper HTML tags like <p>, <h3>, <ul>, <li>, <strong>, <em> to format the description. ' \
-                     'Make the description engaging, informative, and suitable for e-commerce.'
+            content: build_system_prompt
           },
           {
             role: 'user',
-            content: build_prompt
+            content: build_user_prompt
           }
         ],
         temperature: 0.7,
-        max_tokens: 500
+        max_tokens: 800,
+        response_format: { type: 'json_object' }
       }
     end
 
-    def build_prompt
-      prompt = "Write a product description in HTML format for the following product:\n\n"
-      prompt += "Product Name: #{product.name}\n"
-      prompt += "Category: #{product.category&.name}\n" if product.category
-      prompt += "Manufacturer: #{product.manufacturer&.name}\n" if product.manufacturer
-      prompt += "SKU: #{product.sku}\n" if product.sku.present?
-      prompt += "\nPlease create an engaging and informative HTML description for this product."
-      prompt
+    def build_system_prompt
+      base_prompt = [
+        'You are an expert e-commerce copywriter specialized in creating SEO-optimized product descriptions.',
+        'Your task is to analyze a product and provide suggestions for improvement.',
+        '',
+        'Rules:',
+        '1. Generate descriptions in HTML format using proper tags (<p>, <h3>, <ul>, <li>, <strong>, <em>)',
+        '2. Make descriptions engaging, informative, and SEO-friendly',
+        "3. If you don't recognize the product or lack sufficient information, respond with null for both title and description",
+        '4. NEVER invent features or specifications - only describe what you can reasonably infer from the provided information',
+        '5. For the title: suggest an improved, SEO-friendly version only if the current one is too short, vague, or not descriptive',
+        '6. If the current title is adequate, return null for the title field',
+        '7. Focus on benefits, features, and use cases when writing descriptions',
+        '8. Use keywords naturally for better SEO',
+        '',
+        'Response format (JSON):',
+        '{',
+        '  "title": "improved title or null if current is adequate",',
+        '  "description": "HTML formatted description or null if product is not recognized"',
+        '}'
+      ].join("\n")
+
+      return base_prompt unless store.ai_prompt.present?
+
+      "#{base_prompt}\n\nAdditional store-specific instructions:\n#{store.ai_prompt}"
+    end
+
+    def build_user_prompt
+      prompt_parts = []
+      prompt_parts << "Product Name: #{product.name}"
+      prompt_parts << "Category: #{product.category.name}" if product.category
+      prompt_parts << "Manufacturer: #{product.manufacturer.name}" if product.manufacturer
+
+      if product.product_custom_attributes.any?
+        attributes = product.product_custom_attributes.map do |pca|
+          "#{pca.custom_attribute.name}: #{pca.value}" if pca.value.present?
+        end.compact
+        prompt_parts << "Product Attributes:\n#{attributes.join("\n")}" if attributes.any?
+      end
+
+      prompt_parts << "\nAnalyze this product and provide your suggestions in JSON format."
+      prompt_parts.join("\n\n")
     end
 
     def parse_response(response)
       case response
       when Net::HTTPSuccess
         body = JSON.parse(response.body)
-        body.dig('choices', 0, 'message', 'content')
+        content = body.dig('choices', 0, 'message', 'content')
+        suggestions = JSON.parse(content)
+
+        {
+          title: suggestions['title'],
+          description: suggestions['description']
+        }
       else
         Rails.logger.error("OpenAI API error: #{response.code} - #{response.body}")
         raise StandardError, "OpenAI API returned error: #{response.code}"
       end
+    rescue JSON::ParserError => e
+      Rails.logger.error("Failed to parse OpenAI response: #{e.message}")
+      raise StandardError, 'Invalid response from OpenAI API'
     end
   end
 end

@@ -17,18 +17,18 @@ module V2
       }
     end
 
-    def generate_description
+    def ai_suggestions
       authorize @record, :update?
 
       service = OpenAI::DescriptionGeneratorService.new(@record)
-      description = service.generate
+      suggestions = service.generate
 
-      render json: { description: description }
+      render json: suggestions
     rescue OpenAI::DescriptionGeneratorService::MissingApiKeyError => e
       render json: { error: e.message }, status: :unprocessable_content
     rescue StandardError => e
-      Rails.logger.error("Failed to generate description: #{e.message}")
-      render json: { error: 'Failed to generate description' }, status: :internal_server_error
+      Rails.logger.error("Failed to generate AI suggestions: #{e.message}")
+      render json: { error: 'Failed to generate AI suggestions' }, status: :internal_server_error
     end
 
     %i[archive unarchive].each do |action|

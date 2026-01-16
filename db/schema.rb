@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_11_135724) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_16_083151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -465,6 +465,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_11_135724) do
   create_table "stores", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "address1"
     t.string "address2"
+    t.text "ai_prompt"
     t.string "city"
     t.string "color"
     t.uuid "country_id"
