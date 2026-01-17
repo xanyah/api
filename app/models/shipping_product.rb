@@ -6,6 +6,8 @@ class ShippingProduct < ApplicationRecord
 
   has_one :store, through: :product
 
+  monetize :new_amount_cents, allow_nil: true
+
   validates_ownership_of :shipping, with: :store
 
   validates :product_id, uniqueness: { scope: :shipping_id }

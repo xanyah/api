@@ -23,7 +23,10 @@ class Shipping
 
       def insert_products
         shipping_products.each do |shipping_product|
-          shipping_product.product.update(quantity: shipping_product.product.quantity + shipping_product.quantity)
+          product = shipping_product.product
+          product.quantity = product.quantity + shipping_product.quantity
+          product.amount = shipping_product.new_amount if shipping_product.new_amount_cents.present?
+          product.save
         end
       end
 
