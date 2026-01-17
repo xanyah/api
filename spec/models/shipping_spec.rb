@@ -43,9 +43,9 @@ RSpec.describe Shipping do
       new_amount = Money.new(7500)
       product = create(:product, store: shipping.store, amount: original_amount)
       sproduct = create(:shipping_product, shipping: shipping, product: product, new_amount: new_amount)
-      
+
       shipping.validate!
-      
+
       expect(sproduct.reload.product.amount).to eq(new_amount)
     end
 
@@ -53,9 +53,9 @@ RSpec.describe Shipping do
       original_amount = Money.new(5000)
       product = create(:product, store: shipping.store, amount: original_amount)
       sproduct = create(:shipping_product, shipping: shipping, product: product, new_amount_cents: nil)
-      
+
       shipping.validate!
-      
+
       expect(sproduct.reload.product.amount).to eq(original_amount)
     end
 
@@ -63,13 +63,13 @@ RSpec.describe Shipping do
       product1 = create(:product, store: shipping.store, amount: Money.new(1000))
       product2 = create(:product, store: shipping.store, amount: Money.new(2000))
       product3 = create(:product, store: shipping.store, amount: Money.new(3000))
-      
-      sproduct1 = create(:shipping_product, shipping: shipping, product: product1, new_amount: Money.new(1500))
-      sproduct2 = create(:shipping_product, shipping: shipping, product: product2, new_amount_cents: nil)
-      sproduct3 = create(:shipping_product, shipping: shipping, product: product3, new_amount: Money.new(3500))
-      
+
+      create(:shipping_product, shipping: shipping, product: product1, new_amount: Money.new(1500))
+      create(:shipping_product, shipping: shipping, product: product2, new_amount_cents: nil)
+      create(:shipping_product, shipping: shipping, product: product3, new_amount: Money.new(3500))
+
       shipping.validate!
-      
+
       expect(product1.reload.amount).to eq(Money.new(1500))
       expect(product2.reload.amount).to eq(Money.new(2000))
       expect(product3.reload.amount).to eq(Money.new(3500))
