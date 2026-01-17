@@ -11,7 +11,7 @@ class Product < ApplicationRecord
 
   has_many :product_custom_attributes, dependent: :destroy
 
-  accepts_nested_attributes_for :product_custom_attributes
+  accepts_nested_attributes_for :product_custom_attributes, allow_destroy: true, reject_if: :all_blank
 
   monetize :buying_amount_cents, :tax_free_amount_cents, :amount_cents
 
