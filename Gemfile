@@ -13,7 +13,7 @@ gem 'aws-sdk-s3', '~> 1.206', require: false
 gem 'csv', '~> 3.3'
 gem 'devise', '~> 4.9'
 gem 'doorkeeper', '~> 5.8'
-gem 'faker', '~> 3.5', require: false
+gem 'faker', '~> 3.6', require: false
 gem 'good_job', '~> 4.13'
 gem 'image_processing', '~> 1.13'
 gem 'money-rails', '~> 3.0.0'
