@@ -116,7 +116,7 @@ GEM
     base64 (0.3.0)
     bcrypt (3.1.21)
     bigdecimal (4.0.1)
-    brakeman (7.1.2)
+    brakeman (8.0.2)
       racc
     builder (3.3.0)
     case_transform (0.2)
@@ -474,7 +474,7 @@ DEPENDENCIES
   aasm (~> 5.5)
   active_model_serializers (~> 0.10)
   aws-sdk-s3 (~> 1.206)
-  brakeman (~> 7.0)
+  brakeman (~> 8.0)
   csv (~> 3.3)
   database_cleaner-active_record (~> 2.2)
   devise (~> 4.9)
