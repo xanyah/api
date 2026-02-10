@@ -11,7 +11,7 @@ gem 'aasm', '~> 5.5'
 gem 'active_model_serializers', '~> 0.10'
 gem 'aws-sdk-s3', '~> 1.206', require: false
 gem 'csv', '~> 3.3'
-gem 'devise', '~> 4.9'
+gem 'devise', '~> 5.0'
 gem 'doorkeeper', '~> 5.8'
 gem 'faker', '~> 3.5', require: false
 gem 'good_job', '~> 4.13'
@@ -29,7 +29,7 @@ gem 'shopify_api', '~> 16.1'
 gem 'validators', '~> 3.4'
 
 group :development, :test do
-  gem 'brakeman', '~> 7.0', require: false
+  gem 'brakeman', '~> 8.0', require: false
   gem 'database_cleaner-active_record', '~> 2.2'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'pry', '~> 0.16.0'

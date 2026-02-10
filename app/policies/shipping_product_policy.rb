@@ -12,14 +12,16 @@ class ShippingProductPolicy < Presets::UserEditablePolicy
       shipping_id
       product_id
       quantity
-      new_amount
+      new_buying_amount
+      new_selling_amount
     ]
   end
 
   def permitted_attributes_for_update
     %i[
       quantity
-      new_amount
+      new_buying_amount
+      new_selling_amount
     ]
   end
 end

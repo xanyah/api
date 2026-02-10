@@ -15,9 +15,12 @@ class ShippingPolicy < Presets::UserEditablePolicy
       { shipping_products_attributes: %i[
         product_id
         quantity
-        new_amount
-        new_amount_cents
-        new_amount_currency
+        new_buying_amount
+        new_buying_amount_cents
+        new_buying_amount_currency
+        new_selling_amount
+        new_selling_amount_cents
+        new_selling_amount_currency
       ] }
     ]
   end
@@ -28,9 +31,12 @@ class ShippingPolicy < Presets::UserEditablePolicy
       id
       product_id
       quantity
-      new_amount
-      new_amount_cents
-      new_amount_currency
+      new_buying_amount
+      new_buying_amount_cents
+      new_buying_amount_currency
+      new_selling_amount
+      new_selling_amount_cents
+      new_selling_amount_currency
     ]]
   end
 end

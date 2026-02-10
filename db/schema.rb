@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_17_122900) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_10_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -308,6 +308,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_17_122900) do
     t.datetime "created_at", null: false
     t.datetime "deleted_at", precision: nil
     t.text "description"
+    t.boolean "is_refund", default: false, null: false
     t.string "name"
     t.uuid "store_id"
     t.datetime "updated_at", null: false
@@ -428,8 +429,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_17_122900) do
   create_table "shipping_products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "deleted_at"
-    t.integer "new_amount_cents"
-    t.string "new_amount_currency", default: "EUR", null: false
+    t.integer "new_buying_amount_cents"
+    t.string "new_buying_amount_currency", default: "EUR", null: false
+    t.integer "new_selling_amount_cents"
+    t.string "new_selling_amount_currency", default: "EUR", null: false
     t.uuid "product_id", null: false
     t.integer "quantity", default: 1
     t.uuid "shipping_id", null: false

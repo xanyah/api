@@ -28,10 +28,20 @@ class Sale < ApplicationRecord
   private
 
   def update_stock
-    sale_products.each do |sale_product|
-      next if sale_product.product.nil?
+    is_refund = sale_payments.any? { |payment| payment.payment_type&.is_refund }
 
-      sale_product.product.update(quantity: sale_product.product.quantity - sale_product.quantity)
+    sale_products.each do |sale_product|
+      update_product_stock(sale_product, is_refund) unless sale_product.product.nil?
     end
+  end
+
+  def update_product_stock(sale_product, is_refund)
+    new_quantity = if is_refund
+                     sale_product.product.quantity + sale_product.quantity
+                   else
+                     sale_product.product.quantity - sale_product.quantity
+                   end
+
+    sale_product.product.update(quantity: new_quantity)
   end
 end

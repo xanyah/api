@@ -23,11 +23,16 @@ class Shipping
 
       def insert_products
         shipping_products.each do |shipping_product|
-          product = shipping_product.product
-          product.quantity = product.quantity + shipping_product.quantity
-          product.amount = shipping_product.new_amount if shipping_product.new_amount_cents.present?
-          product.save
+          insert_product(shipping_product)
         end
+      end
+
+      def insert_product(shipping_product)
+        product = shipping_product.product
+        product.quantity = product.quantity + shipping_product.quantity
+        product.buying_amount = shipping_product.new_buying_amount if shipping_product.new_buying_amount_cents.present?
+        product.amount = shipping_product.new_selling_amount if shipping_product.new_selling_amount_cents.present?
+        product.save
       end
 
       def extract_products
