@@ -38,21 +38,21 @@ RSpec.describe Shipping do
       expect(sproduct3.reload.product.quantity).not_to eq(sproduct3_qty + sproduct3.quantity)
     end
 
-    it :updates_products_amount_when_new_amount_is_present do
+    it :updates_products_amount_when_new_selling_amount_is_present do
       original_amount = Money.new(5000)
-      new_amount = Money.new(7500)
+      new_selling_amount = Money.new(7500)
       product = create(:product, store: shipping.store, amount: original_amount)
-      sproduct = create(:shipping_product, shipping: shipping, product: product, new_amount: new_amount)
+      sproduct = create(:shipping_product, shipping: shipping, product: product, new_selling_amount: new_selling_amount)
 
       shipping.validate!
 
-      expect(sproduct.reload.product.amount).to eq(new_amount)
+      expect(sproduct.reload.product.amount).to eq(new_selling_amount)
     end
 
-    it :does_not_update_products_amount_when_new_amount_is_not_present do
+    it :does_not_update_products_amount_when_new_selling_amount_is_not_present do
       original_amount = Money.new(5000)
       product = create(:product, store: shipping.store, amount: original_amount)
-      sproduct = create(:shipping_product, shipping: shipping, product: product, new_amount_cents: nil)
+      sproduct = create(:shipping_product, shipping: shipping, product: product, new_selling_amount_cents: nil)
 
       shipping.validate!
 
@@ -64,9 +64,9 @@ RSpec.describe Shipping do
       product2 = create(:product, store: shipping.store, amount: Money.new(2000))
       product3 = create(:product, store: shipping.store, amount: Money.new(3000))
 
-      create(:shipping_product, shipping: shipping, product: product1, new_amount: Money.new(1500))
-      create(:shipping_product, shipping: shipping, product: product2, new_amount_cents: nil)
-      create(:shipping_product, shipping: shipping, product: product3, new_amount: Money.new(3500))
+      create(:shipping_product, shipping: shipping, product: product1, new_selling_amount: Money.new(1500))
+      create(:shipping_product, shipping: shipping, product: product2, new_selling_amount_cents: nil)
+      create(:shipping_product, shipping: shipping, product: product3, new_selling_amount: Money.new(3500))
 
       shipping.validate!
 
