@@ -92,6 +92,8 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    addressable (2.8.8)
+      public_suffix (>= 2.0.2, < 8.0)
     ansi (1.5.0)
     ast (2.4.3)
     aws-eventstream (1.4.0)
@@ -195,6 +197,9 @@ GEM
       reline (>= 0.4.2)
     jmespath (1.6.2)
     json (2.18.1)
+    json-schema (6.1.0)
+      addressable (~> 2.8)
+      bigdecimal (>= 3.1, < 5)
     jsonapi-renderer (0.2.2)
     jwt (3.1.2)
       base64
@@ -211,6 +216,8 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
+    mcp (0.7.1)
+      json-schema (>= 4.1)
     method_source (1.1.0)
     mini_magick (5.3.1)
       logger
@@ -268,7 +275,7 @@ GEM
     parallel (1.27.0)
     paranoia (3.1.0)
       activerecord (>= 7, < 8.2)
-    parser (3.3.10.1)
+    parser (3.3.10.2)
       ast (~> 2.4.1)
       racc
     pg (1.6.3)
@@ -289,6 +296,7 @@ GEM
     psych (5.3.1)
       date
       stringio
+    public_suffix (7.0.2)
     puma (7.2.0)
       nio4r (~> 2.0)
     pundit (2.5.2)
@@ -373,10 +381,11 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.7)
-    rubocop (1.84.1)
+    rubocop (1.85.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
+      mcp (~> 0.6)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
@@ -497,7 +506,7 @@ DEPENDENCIES
   ransack (~> 4.2)
   rspec-rails (~> 8.0)
   rspec_api_documentation!
-  rubocop (~> 1.71)
+  rubocop (~> 1.85)
   rubocop-factory_bot (~> 2.28)
   rubocop-performance (~> 1.23)
   rubocop-rails (~> 2.34)
