@@ -12,7 +12,7 @@ gem 'active_model_serializers', '~> 0.10'
 gem 'aws-sdk-s3', '~> 1.206', require: false
 gem 'csv', '~> 3.3'
 gem 'devise', '~> 5.0'
-gem 'doorkeeper', '~> 5.8'
+gem 'doorkeeper', '~> 5.9'
 gem 'faker', '~> 3.5', require: false
 gem 'good_job', '~> 4.13'
 gem 'image_processing', '~> 1.13'
