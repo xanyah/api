@@ -9,7 +9,7 @@ gem 'dotenv-rails', '~> 3.2', groups: %i[development test]
 
 gem 'aasm', '~> 5.5'
 gem 'active_model_serializers', '~> 0.10'
-gem 'aws-sdk-s3', '~> 1.206', require: false
+gem 'aws-sdk-s3', '~> 1.216', require: false
 gem 'csv', '~> 3.3'
 gem 'devise', '~> 5.0'
 gem 'doorkeeper', '~> 5.8'
