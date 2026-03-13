@@ -17,7 +17,7 @@ gem 'faker', '~> 3.5', require: false
 gem 'good_job', '~> 4.13'
 gem 'image_processing', '~> 1.13'
 gem 'money-rails', '~> 3.0.0'
-gem 'pagy', '~> 43.2'
+gem 'pagy', '~> 43.3'
 gem 'paranoia', '~> 3.0'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 7.1'
