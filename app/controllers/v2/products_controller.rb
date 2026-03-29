@@ -20,10 +20,13 @@ module V2
     def ai_suggestions
       authorize @record, :update?
 
+      subcategories = Category.where(store_id: @record.store_id).where.not(category_id: nil).includes(:category)
+
       service = OpenAi::DescriptionGeneratorService.new(
         @record,
         title: params[:title],
-        description: params[:description]
+        description: params[:description],
+        categories: subcategories
       )
       suggestions = service.generate
 
