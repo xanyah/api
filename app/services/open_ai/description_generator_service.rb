@@ -84,7 +84,8 @@ module OpenAi
         '6. If the current title is adequate, return null for the title field',
         '7. Focus on benefits, features, and use cases when writing descriptions',
         '8. Use keywords naturally for better SEO',
-        '9. For the category: pick the most relevant subcategory from the provided list using its exact id. Only pick a subcategory (one that has a parent). Return null if none fits.',
+        '9. For the category: pick the most relevant subcategory from the provided list using its exact id. Only pick a subcategory (one that has a parent).',
+        '   Return null if none fits.',
         '',
         'Response format (JSON):',
         '{',
@@ -99,7 +100,7 @@ module OpenAi
       "#{base_prompt}\n\nAdditional store-specific instructions:\n#{store.ai_prompt}"
     end
 
-    def build_user_prompt # rubocop:disable Metrics/AbcSize
+    def build_user_prompt # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
       prompt_parts = []
       title = custom_title.presence || product.name
       description = custom_description.presence || product.description
@@ -138,7 +139,7 @@ module OpenAi
       "Product Attributes:\n#{attributes.join("\n")}" if attributes.any?
     end
 
-    def parse_response(response)
+    def parse_response(response) # rubocop:disable Metrics/AbcSize
       case response
       when Net::HTTPSuccess
         body = JSON.parse(response.body)
