@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'faker'
+
 france = Country.where(code: 'FRA').first_or_create do |temp_country|
   temp_country.name = 'France'
 end
