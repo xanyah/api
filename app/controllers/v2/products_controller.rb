@@ -17,7 +17,7 @@ module V2
       }
     end
 
-    def ai_suggestions
+    def ai_suggestions # rubocop:disable Metrics/AbcSize
       authorize @record, :update?
 
       subcategories = Category.where(store_id: @record.store_id).where.not(category_id: nil).includes(:category)
