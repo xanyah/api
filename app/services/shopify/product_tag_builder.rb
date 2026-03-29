@@ -11,7 +11,8 @@ module Shopify
         stock_level_tag,
         image_presence_tag,
         manufacturer_tag,
-        category_hierarchy_tags
+        category_hierarchy_tags,
+        custom_attribute_tags
       ].flatten.compact.uniq
 
       Rails.logger.info("Generated Shopify tags for product_id=#{product.id}: #{tags.join(', ')}")
@@ -46,6 +47,14 @@ module Shopify
       end
 
       tags
+    end
+
+    def custom_attribute_tags
+      product.product_custom_attributes.filter_map do |pca|
+        next if pca.value.blank? || pca.custom_attribute&.name.blank?
+
+        "#{slugify(pca.custom_attribute.name)}:#{slugify(pca.value)}"
+      end
     end
 
     def slugify(text)
