@@ -26,7 +26,7 @@ class ShippingPolicy < Presets::UserEditablePolicy
   end
 
   def permitted_attributes_for_update
-    [shipping_products_attributes: %i[
+    [{ shipping_products_attributes: %i[
       _destroy
       id
       product_id
@@ -37,6 +37,6 @@ class ShippingPolicy < Presets::UserEditablePolicy
       new_selling_amount
       new_selling_amount_cents
       new_selling_amount_currency
-    ]]
+    ] }]
   end
 end
