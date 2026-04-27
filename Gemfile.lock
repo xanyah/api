@@ -194,7 +194,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
-    json (2.19.3)
+    json (2.19.4)
     jsonapi-renderer (0.2.2)
     jwt (3.1.2)
       base64
@@ -263,7 +263,7 @@ GEM
     openssl (4.0.0)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
-    pagy (43.4.2)
+    pagy (43.5.3)
       json
       uri
       yaml
@@ -488,7 +488,7 @@ DEPENDENCIES
   good_job (~> 4.13)
   image_processing (~> 1.13)
   money-rails (~> 3.0.0)
-  pagy (~> 43.4)
+  pagy (~> 43.5)
   paranoia (~> 3.0)
   pg (~> 1.5)
   pry (~> 0.16.0)
