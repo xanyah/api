@@ -37,7 +37,7 @@ group :development, :test do
   gem 'rubocop', '~> 1.86', require: false
   gem 'rubocop-factory_bot', '~> 2.28', require: false
   gem 'rubocop-performance', '~> 1.23', require: false
-  gem 'rubocop-rails', '~> 2.34', require: false
+  gem 'rubocop-rails', '~> 2.35', require: false
   gem 'rubocop-rspec_rails', '~> 2.32', require: false
   gem 'rubocop-thread_safety', '~> 0.6', require: false
 end
