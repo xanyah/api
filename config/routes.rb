@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   default_url_options host: ENV.fetch('RAILS_DEFAULT_HOST', 'localhost:3000')
   devise_for :users, only: []
 
+  # Probed from inside the container to decide whether the instance is
+  # healthy enough to receive traffic.
+  get 'up' => 'rails/health#show', as: :rails_health_check
+
   mount GoodJob::Engine => 'good_job'
 
   namespace :v2 do

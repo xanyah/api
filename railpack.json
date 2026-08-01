@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "provider": "ruby",
+  "deploy": {
+    "aptPackages": [
+      "...",
+      "curl",
+      "libyaml-dev",
+      "libvips-dev"
+    ],
+    "variables": {
+      "RAILS_ENV": "production"
+    }
+  }
+}

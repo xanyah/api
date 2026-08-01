@@ -16,6 +16,14 @@
 
 - `yarn docs`
 
+## Deployment
+
+Built with [Railpack](https://railpack.com) — no Dockerfile needed. Deployable on any
+Railpack-compatible host; see [DEPLOYMENT.md](DEPLOYMENT.md) for the processes, health check
+and environment variables.
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template?template=https%3A%2F%2Fgithub.com%2Fxanyah%2Fapi)
+
 ## Our stack
 
 - Ruby on Rails

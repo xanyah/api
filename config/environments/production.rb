@@ -44,7 +44,10 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  # TLS is terminated by the reverse proxy, which forwards X-Forwarded-Proto. The health check is
+  # excluded because the platform probes it over plain HTTP from inside the container.
   config.force_ssl = true
+  config.ssl_options = { redirect: { exclude: ->(request) { request.path == '/up' } } }
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new($stdout)
