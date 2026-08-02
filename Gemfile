@@ -25,7 +25,7 @@ gem 'pundit', '~> 2.4'
 gem 'rack-cors', '~> 3.0'
 gem 'rails', '~> 8.1'
 gem 'ransack', '~> 4.2'
-gem 'shopify_api', '~> 16.1'
+gem 'shopify_api', '~> 16.2'
 gem 'validators', '~> 3.4'
 
 group :development, :test do
